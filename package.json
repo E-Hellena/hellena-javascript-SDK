@@ -1,13 +1,13 @@
 {
   "name": "@hellena-sdk/hellena",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "start": "node dist/main.js",
     "pack": "mkdir -p packages && npm pack && mv *.tgz packages/",
-    "dev": "node --loader ts-node/esm src/index.ts"
+    "dev": "node --loader ts-node/esm src/test.ts"
   },
   "publishConfig": {
     "access": "public"
@@ -40,7 +40,6 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "dotenv": "^17.2.3",
-    "graphql-request": "^7.4.0"
+    "dotenv": "^17.2.3"
   }
 }

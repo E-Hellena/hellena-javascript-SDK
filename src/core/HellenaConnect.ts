@@ -11,12 +11,4 @@ export class HellenaConnect {
             Authorization: `Bearer ${this.apiKey}`,
         };
     }
-
-    getApiKey() { return this.apiKey; }
-
-    getApiEndpoint() { return this.apiEndpoint; }
-
-    getApiVersion() { return this.apiVersion; }
-
-    getApiUrl() { return this.apiUrl; }
 }
