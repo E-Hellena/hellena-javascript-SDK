@@ -1,5 +1,5 @@
-import type { OrganizationInfoResponseDTO, OrganizationLinkDTO } from "./dto/organization.dto.js";
-import { OrganizationService } from "./service/organization.ser.js";
+import type { OrganizationInfoResponseDTO, OrganizationLinkDTO } from "./dto/organization.dto";
+import { OrganizationService } from "./service/organization.ser";
 
 export class OrganizationFeature {
     constructor(private readonly service: OrganizationService) { }

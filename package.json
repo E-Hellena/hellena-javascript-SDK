@@ -1,18 +1,18 @@
 {
   "name": "@hellena-sdk/hellena",
-  "version": "1.0.4",
-  "description": "",
-  "main": "dist/main.js",
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/main.js",
-    "pack": "mkdir -p packages && npm pack && mv *.tgz packages/",
-    "dev": "node --loader ts-node/esm src/test.ts"
+  "version": "1.0.6",
+  "module": "src/main.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
   },
-  "publishConfig": {
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+   "publishConfig": {
     "access": "public"
   },
-  "packDestination": "./packages",
+   "packDestination": "./packages",
   "types": "dist/main.d.ts",
   "exports": {
     ".": {
@@ -20,26 +20,16 @@
       "types": "./dist/main.d.ts"
     }
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Helena-mother/hellena-javascript-SDK.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
+   "bugs": {
     "url": "https://github.com/Helena-mother/hellena-javascript-SDK/issues"
   },
-  "homepage": "https://github.com/Helena-mother/hellena-javascript-SDK#readme",
-  "devDependencies": {
-    "@types/node": "^25.0.3",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.3"
-  }
+  "homepage": "https://github.com/Helena-mother/hellena-javascript-SDK#readme"
 }

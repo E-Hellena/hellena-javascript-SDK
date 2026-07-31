@@ -1,14 +1,24 @@
 export class HellenaConnect {
-    protected readonly apiUrl = "https://hellena-api-for-devs.vercel.app";
-    protected readonly apiVersion = "v1";
-    protected readonly apiEndpoint = `${this.apiUrl}/${this.apiVersion}`;
+    protected readonly apiUrl: string;
+    protected readonly apiVersion: string;
 
-    constructor(protected readonly apiKey: string) { }
+    constructor(
+        protected readonly apiKey: string,
+        apiUrl = "https://api.hellena.app",
+        apiVersion = "v1",
+    ) {
+        this.apiUrl = apiUrl;
+        this.apiVersion = apiVersion;
+    }
 
-    protected getHeaders() {
+    protected get apiEndpoint(): string {
+        return `${this.apiUrl}/${this.apiVersion}`;
+    }
+
+    protected getHeaders(): Record<string, string> {
         return {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${this.apiKey}`,
+            "x-hellena-api-key": this.apiKey,
         };
     }
 }

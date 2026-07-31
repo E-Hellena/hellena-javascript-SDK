@@ -1,12 +1,12 @@
-import type { HellenaConnect } from "@/core/HellenaConnect.js";
-import type { Order_Return, OrderDTO } from "../dto/order.dto.js";
+import type { HellenaConnect } from "@//core/HellenaConnect";
+import type { Order_Return, OrderDTO } from "../dto/order.dto";
 
 export class OrderService {
     constructor(private readonly connect: HellenaConnect) { }
 
     async make({ data }: { data: OrderDTO }): Promise<Order_Return> {
         const response = await fetch(
-            `${this.connect["apiEndpoint"]}/order/new`,
+            `${this.connect["apiEndpoint"]}/orders`,
             {
                 method: "POST",
                 headers: this.connect["getHeaders"](),
@@ -22,6 +22,6 @@ export class OrderService {
             });
         }
 
-        return response.json();
+        return response.json() as any;
     }
 }

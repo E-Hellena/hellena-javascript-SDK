@@ -1,5 +1,5 @@
-import type { HellenaConnect } from "@/core/HellenaConnect.js";
-import type { OrganizationInfoResponseDTO, OrganizationLinkDTO} from "../dto/organization.dto.js";
+import type { HellenaConnect } from "@//core/HellenaConnect";
+import type { OrganizationInfoResponseDTO, OrganizationLinkDTO } from "../dto/organization.dto";
 
 export class OrganizationService {
     constructor(private readonly connect: HellenaConnect) {}
@@ -17,7 +17,7 @@ export class OrganizationService {
             throw new Error(`Erro ao buscar informações da organização (${response.status})`);
         }
 
-        return response.json();
+        return response.json() as any;
     }
 
     async getLinks(): Promise<OrganizationLinkDTO[]> {
@@ -33,6 +33,6 @@ export class OrganizationService {
             throw new Error(`Erro ao buscar links da organização (${response.status})`);
         }
 
-        return response.json();
+        return response.json() as any;
     }
 }
