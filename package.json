@@ -1,35 +1,49 @@
 {
   "name": "@hellena-sdk/hellena",
   "version": "1.0.6",
-  "module": "src/main.ts",
+  "description": "Official JavaScript SDK for the Hellena API",
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "module": "dist/main.js",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "bun build src/main.ts --outdir dist --target node && tsc --emitDeclarationOnly",
+    "dev": "bun run index.ts",
+    "pack": "mkdir -p packages && npm pack && mv *.tgz packages/",
+    "prepublishOnly": "bun run build"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typescript": "^5.9.0"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
-   "publishConfig": {
+  "publishConfig": {
     "access": "public"
   },
-   "packDestination": "./packages",
-  "types": "dist/main.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/main.js",
-      "types": "./dist/main.d.ts"
-    }
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "files": ["dist"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Helena-mother/hellena-javascript-SDK.git"
   },
-   "bugs": {
+  "bugs": {
     "url": "https://github.com/Helena-mother/hellena-javascript-SDK/issues"
   },
-  "homepage": "https://github.com/Helena-mother/hellena-javascript-SDK#readme"
+  "homepage": "https://github.com/Helena-mother/hellena-javascript-SDK#readme",
+  "keywords": [
+    "hellena",
+    "sdk",
+    "api",
+    "javascript",
+    "typescript"
+  ]
 }
