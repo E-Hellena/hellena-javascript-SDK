@@ -1,4 +1,4 @@
-import type { HellenaConnect } from "@//core/HellenaConnect";
+import type { HellenaConnect } from "@/core/HellenaConnect";
 import { ProductService } from "./service/product.ser";
 import { ProductFeature } from "./product.feature";
 

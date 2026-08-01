@@ -18,7 +18,7 @@
   "scripts": {
     "build": "bun build src/main.ts --outdir dist --target node && tsc --emitDeclarationOnly",
     "dev": "bun run index.ts",
-    "pack": "mkdir -p packages && npm pack && mv *.tgz packages/",
+    "pack": "mkdir packages && npm pack && mv *.tgz packages/",
     "prepublishOnly": "bun run build"
   },
   "devDependencies": {

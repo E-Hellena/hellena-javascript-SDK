@@ -1,36 +1,37 @@
 {
   "compilerOptions": {
-    // Environment setup & latest features
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "target": "ESNext",
     "module": "Preserve",
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
-    "types": ["bun"],
-
-    // Bundler mode
+    "types": [
+      "bun"
+    ],
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
+    "declaration": true,
+    "emitDeclarationOnly": false,
     "noEmit": true,
-
     "paths": {
-      "@/*": ["./src*"],
-      "@core/*": ["./src/core/*"],
-      "@resources/*": ["./src/resources/*"]
+      "@*": [
+        "./src*"
+      ],
+      "@core/*": [
+        "./src/core/*"
+      ],
+      "@resources/*": [
+        "./src/resources/*"
+      ]
     },
-
-    // Best practices
     "strict": true,
     "skipLibCheck": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-
-    // Some stricter flags (disabled by default)
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
+    "noImplicitOverride": true
   }
 }

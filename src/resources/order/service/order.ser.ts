@@ -1,4 +1,4 @@
-import type { HellenaConnect } from "@//core/HellenaConnect";
+import type { HellenaConnect } from "@/core/HellenaConnect";
 import type { Order_Return, OrderDTO } from "../dto/order.dto";
 
 export class OrderService {
