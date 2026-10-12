@@ -1,73 +1,83 @@
-export interface OrderDTO {
-    customerName?: string;
-    customerEmail?: string;
-    customerId?: string;
-    customerProfile?: string;
-    notes?: string;
-    lat?: number;
-    lng?: number;
-    origin?: string;
-    shippingMethod?: string;
-    paymentMethod?: string;
-    cupon?: string;
-    meta?: Record<string, any>;
-    address?: string;
-    items: Order_ItemsDTO[]
+export interface DashboardOrderInfoDTO {
+  customerId?: string;
+  customerProfile?: string;
+  customerName?: string;
+  customerEmail?: string;
+  customerPhone?: string;
+  customerNIF?: string;
+  notes?: string;
+  lat?: number;
+  lng?: number;
+  address?: string;
 }
 
-interface Order_ItemsDTO {
-    productId: string;
-    quantity: number;
-    price: number;
-    image?: string;
-    category?: string;
-    name?: string;
+export interface DashboardOrderItemDTO {
+  productId: string;
+  name: string;
+  category?: string;
+  image?: string;
+  quantity: number;
+  size?: string;
+  color?: string;
+  material?: string;
+  model?: string;
+  gender?: string;
+  price: number;
+}
+
+export interface OrderDTO {
+  info?: DashboardOrderInfoDTO;
+  items: DashboardOrderItemDTO[];
+  coupon?: string;
+  frete?: number;
+  localization?: string;
 }
 
 export interface Order_Return {
-    id: string
-    organizationId: string
-    createdAt: string
-    updatedAt: any
-    origin: string
-    status: string
-    amount: number
-    deletedAt: any
-    deliveryDate: any
-    dueDate: any
-    trackingCode: any
-    shippingMethod: any
-    paymentMethod: any
-    cupon: any
-    meta: any
-    orderInfo: OrderInfo
-    items: Item[]
+  id: string;
+  invoice?: string | null;
+  invoice_link?: string | null;
+  organizationId: string;
+  amount: number;
+  couponCode?: string | null;
+  couponDiscount?: number | null;
+  frete?: number | null;
+  status: string;
+  transactionId?: string;
+  [key: string]: unknown;
 }
 
-export interface OrderInfo {
-    id: string
-    orderId: string
-    customerId: any
-    customerProfile: any
-    customerName: string
-    customerEmail: string
-    notes: any
-    lat: string
-    lng: string
-    address: string
-    createdAt: string
-    updatedAt: any
+export interface GetFreteDTO {
+  localization?: string;
+  lat?: number;
+  long?: number;
+  coupon?: string;
+  items?: DashboardOrderItemDTO[];
 }
 
-export interface Item {
-    id: string
-    orderId: string
-    productId: string
-    image: string
-    category: string
-    name: string
-    quantity: number
-    price: number
-    createdAt: string
-    updatedAt: any
+export interface CouponDiscountDTO {
+  code: string;
+  items: DashboardOrderItemDTO[];
+  customerId?: string;
+  customerEmail?: string;
+  fretePrice?: number;
+}
+
+export interface FreteResponseDTO {
+  required: boolean;
+  price: number;
+  isFreeShipping: boolean;
+  message?: string;
+}
+
+export interface CouponDiscountResponseDTO {
+  valid: boolean;
+  message?: string;
+  code?: string;
+  discountType?: string;
+  discountValue?: number;
+  discountAmount?: number;
+  isFreeShipping?: boolean;
+  subtotal?: number;
+  finalAmount?: number;
 }

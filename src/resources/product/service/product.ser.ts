@@ -1,38 +1,19 @@
-import type { HellenaConnect } from "@//core/HellenaConnect";
-import type { ProductDTO } from "../dto/product.dto";
+import type { HellenaConnect } from "../../../core/HellenaConnect";
+import type { PaginatedResponse, ProductDTO, ProductListParams, ProductSearchParams } from "../dto/product.dto";
 
 export class ProductService {
-    constructor(private readonly connect: HellenaConnect) {}
+  constructor(private readonly connect: HellenaConnect) {}
 
-    async getAllProducts(): Promise<ProductDTO[]> {
-        const response = await fetch(
-            `${this.connect["apiEndpoint"]}/products/all`,
-            {
-                method: "GET",
-                headers: this.connect["getHeaders"](),
-            }
-        );
+  getAllProducts(params: ProductListParams = {}): Promise<PaginatedResponse<ProductDTO>> {
+    return this.connect.sendRestRequest("products/all", { query: { page: params.page, limit: params.limit } });
+  }
 
-        if (!response.ok) {
-            throw new Error(`Erro ao buscar produtos (${response.status})`);
-        }
+  searchProducts(params: ProductSearchParams): Promise<PaginatedResponse<ProductDTO>> {
+    const { ref, ...pagination } = params;
+    return this.connect.sendRestRequest("products/search", { query: { ref, ...pagination } });
+  }
 
-        return response.json() as any;
-    }
-
-    async getProductById(id: string): Promise<ProductDTO> {
-        const response = await fetch(
-            `${this.connect["apiEndpoint"]}/products/${id}`,
-            {
-                method: "GET",
-                headers: this.connect["getHeaders"](),
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`Erro ao buscar produto (${response.status})`);
-        }
-
-        return response.json() as any;
-    }
+  getProductById(id: string): Promise<ProductDTO> {
+    return this.connect.sendRestRequest(`products/${encodeURIComponent(id)}`);
+  }
 }

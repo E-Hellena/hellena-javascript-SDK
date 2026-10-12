@@ -13,6 +13,8 @@ coverage
 index.ts
 packages
 
+.env
+
 # logs
 logs
 _.log

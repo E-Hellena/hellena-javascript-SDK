@@ -1,6 +1,6 @@
 {
   "name": "@hellena-sdk/hellena",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Official JavaScript SDK for the Hellena API",
   "license": "ISC",
   "author": "",
@@ -14,9 +14,11 @@
       "import": "./dist/main.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "bun build src/main.ts --outdir dist --target node && tsc --emitDeclarationOnly",
+    "build": "bun build src/main.ts --outdir dist --target node && tsc --emitDeclarationOnly -p tsconfig.json",
     "dev": "bun run index.ts",
     "pack": "mkdir packages && npm pack && mv *.tgz packages/",
     "prepublishOnly": "bun run build"

@@ -2,8 +2,12 @@ import type { OrganizationInfoResponseDTO, OrganizationLinkDTO } from "./dto/org
 import { OrganizationService } from "./service/organization.ser";
 
 export class OrganizationFeature {
-    constructor(private readonly service: OrganizationService) { }
+  constructor(private readonly service: OrganizationService) {}
 
-    info(): Promise<OrganizationInfoResponseDTO> { return this.service.getInfo() }
-    socialLinks(): Promise<OrganizationLinkDTO[]> { return this.service.getLinks() }
+  /** Obtém as informações públicas da organização associada à API Key. */
+  getOrganizationInfo(): Promise<OrganizationInfoResponseDTO> { return this.service.getInfo(); }
+
+  /** Obtém os links sociais configurados pela organização. */
+  getOrganizationSocialLinks(): Promise<OrganizationLinkDTO[]> { return this.service.getLinks(); }
+
 }
