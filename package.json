@@ -1,6 +1,6 @@
 {
   "name": "@hellena-sdk/hellena",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Official JavaScript SDK for the Hellena API",
   "license": "ISC",
   "author": "",

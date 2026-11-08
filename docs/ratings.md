@@ -1,35 +1,57 @@
 # Avaliações
 
-Os métodos de avaliações estão disponíveis em `hellena.rating`.
+Os métodos de avaliações estão disponíveis em `hellena.rating`. Todos os pedidos usam a rota `/v1/rating`.
 
-## `rating.getProductRatingSummary(stockId)`
+## Consultar o resumo de avaliações
 
-Devolve o resumo das avaliações do produto.
+`rating.getProductRatingSummary(stockId, params?)` devolve os dados principais do produto, a média, totais, distribuição por estrelas e uma página de avaliações recentes.
 
 ```ts
-const summary = await hellena.rating.getProductRatingSummary("product-id");
-console.log(summary.averageRating, summary.ratingCount, summary.commentsCount);
+const result = await hellena.rating.getProductRatingSummary("product-id", {
+  page: 1,
+  limit: 10,
+});
+
+console.log(result.product);
+console.log(result.summary.averageRating);
+console.log(result.summary.totalRatings);
+console.log(result.summary.distribution); // 5, 4, 3, 2 e 1 estrelas
+console.log(result.ratings.data);
+console.log(result.ratings.meta);
 ```
 
-Endpoint: `GET /v1/ratings/products/:stockId/summary`.
+Endpoint: `GET /v1/rating/products/:stockId/summary?page=1&limit=10`.
 
-## `rating.getCustomerProductRating({ stockId, customerId })`
+A distribuição contém, para cada pontuação, a quantidade de avaliações e a percentagem em relação ao total. O resumo também inclui `totalScore`, `minScore`, `maxScore`, `commentsCount` e `ratingLabel`.
 
-Procura a avaliação de um cliente para um produto. A resposta é uma avaliação ou `null`, conforme a resposta da API.
+## Listar avaliações
+
+`rating.listProductRatings({ stockId, page?, limit? })` devolve avaliações paginadas.
+
+```ts
+const result = await hellena.rating.listProductRatings({
+  stockId: "product-id",
+  page: 1,
+  limit: 20,
+});
+```
+
+Endpoint: `GET /v1/rating/products/:stockId/ratings?page=1&limit=20`.
+
+## Consultar a avaliação de um cliente
+
+`rating.getCustomerProductRating({ stockId, customerId })` procura a avaliação do cliente para o produto. Devolve uma avaliação ou `null`.
 
 ```ts
 const rating = await hellena.rating.getCustomerProductRating({
   stockId: "product-id",
   customerId: "customer-id",
 });
-console.log(rating);
 ```
 
-Endpoint: `GET /v1/ratings/products/:stockId?customerId=...`.
+Endpoint: `GET /v1/rating/products/:stockId?customerId=...`.
 
-## `rating.createProductRating(data)`
-
-Cria uma avaliação.
+## Criar ou atualizar uma avaliação
 
 ```ts
 const rating = await hellena.rating.createProductRating({
@@ -40,21 +62,17 @@ const rating = await hellena.rating.createProductRating({
 });
 ```
 
-Obrigatórios: `stockId`, `score`. Os dados de cliente são opcionais. Confirma as regras de pontuação aplicadas pela API antes de aceitar valores no teu formulário.
+Obrigatórios: `stockId` e `score` (inteiro de 1 a 5). Os dados do cliente são opcionais.
 
-Endpoint: `POST /v1/ratings`.
+Endpoint: `POST /v1/rating`.
 
-## `rating.deleteProductRating(id)`
-
-Remove uma avaliação pelo ID.
+## Eliminar uma avaliação
 
 ```ts
 const result = await hellena.rating.deleteProductRating("rating-id");
 console.log(result.success);
 ```
 
-Endpoint: `DELETE /v1/ratings/:id`.
+A remoção é lógica (soft delete).
 
-## Exemplo executável
-
-Executa `node docs/examples/ratings.mjs`. Operações de escrita e remoção só são executadas se definires `HELLENA_ALLOW_WRITES=true`.
+Endpoint: `DELETE /v1/rating/:id`.

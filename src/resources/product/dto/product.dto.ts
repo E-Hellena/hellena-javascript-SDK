@@ -3,6 +3,7 @@ export interface PriceDTO {
   quantity: number;
   price: number;
   priceType?: string;
+  isPromotion?: boolean;
 }
 
 export interface ProductVariantDTO {
@@ -21,7 +22,7 @@ export interface ProductVariantDTO {
 
 export interface ProductDTO {
   id: string;
-  slug?: string;
+  slug?: string | null;
   barcode: string | null;
   name: string;
   category: string | null;
@@ -32,13 +33,18 @@ export interface ProductDTO {
   image_sides: string[] | null;
   color: string[] | null;
   brand: string | null;
+  model?: string[] | null;
   material: string[] | null;
   size: string[] | null;
   tags: string[] | null;
+  gender?: string[] | null;
   prices: PriceDTO[];
   unit: string | null;
   unitsPerBox?: number | null;
   quantity: number;
+  averageRating?: number;
+  ratingCount?: number;
+  commentsCount?: number;
   variants?: ProductVariantDTO[];
 }
 
@@ -59,8 +65,22 @@ export interface PaginatedResponse<T> {
 export interface ProductListParams {
   page?: number;
   limit?: number;
+  q?: string;
+  category?: string;
+  color?: string | string[];
+  brand?: string;
+  model?: string | string[];
+  material?: string | string[];
+  size?: string | string[];
+  tags?: string | string[];
+  gender?: string | string[];
+  minPrice?: number;
+  maxPrice?: number;
+  inStock?: boolean;
+  sortBy?: "createdAt" | "updatedAt" | "name";
+  sortOrder?: "asc" | "desc";
 }
 
 export interface ProductSearchParams extends ProductListParams {
-  ref: string;
+  ref?: string;
 }

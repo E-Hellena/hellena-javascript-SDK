@@ -5,6 +5,7 @@ import { OrganizationModel } from "./resources/organization/organization.model";
 import { CommentModel } from "./resources/comment/comment.model";
 import { RatingModel } from "./resources/rating/rating.model";
 import { PaymentModel } from "./resources/payment/payment.model";
+import { CategoryModel } from "./resources/category/category.model";
 
 export class HellenaClient extends HellenaConnect {
   public readonly product = ProductModel(this);
@@ -13,6 +14,7 @@ export class HellenaClient extends HellenaConnect {
   public readonly comment = CommentModel(this);
   public readonly rating = RatingModel(this);
   public readonly payment = PaymentModel(this);
+  public readonly category = CategoryModel(this);
 
   constructor(apiKey: string, options: HellenaClientOptions = {}) {
     super(apiKey, options);
@@ -26,3 +28,4 @@ export * from "./resources/comment/dto/comment.dto";
 export * from "./resources/rating/dto/rating.dto";
 export * from "./resources/payment/dto/payment.dto";
 export * from "./resources/organization/dto/organization.dto";
+export * from "./resources/category/dto/category.dto";

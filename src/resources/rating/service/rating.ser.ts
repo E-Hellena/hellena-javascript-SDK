@@ -1,17 +1,36 @@
 import type { HellenaConnect } from "../../../core/HellenaConnect";
-import type { AddRatingDTO, RatingDTO, RatingSummaryDTO } from "../dto/rating.dto";
+import type { AddRatingDTO, PaginatedRatingsDTO, RatingDTO, RatingSummaryDTO } from "../dto/rating.dto";
+
 export class RatingService {
   constructor(private readonly connect: HellenaConnect) {}
-  summary(stockId: string): Promise<RatingSummaryDTO> {
-    return this.connect.sendRestRequest(`ratings/products/${encodeURIComponent(stockId)}/summary`);
+
+  summary(stockId: string, params: { page?: number; limit?: number } = {}): Promise<RatingSummaryDTO> {
+    return this.connect.sendRestRequest(
+      `rating/products/${encodeURIComponent(stockId)}/summary`,
+      { query: params },
+    );
   }
+
+  findMany(params: { stockId: string; page?: number; limit?: number }): Promise<PaginatedRatingsDTO> {
+    const { stockId, ...pagination } = params;
+    return this.connect.sendRestRequest(
+      `rating/products/${encodeURIComponent(stockId)}/ratings`,
+      { query: pagination },
+    );
+  }
+
   findOne(params: { stockId: string; customerId: string }): Promise<RatingDTO | null> {
-    return this.connect.sendRestRequest(`ratings/products/${encodeURIComponent(params.stockId)}`, { query: { customerId: params.customerId } });
+    return this.connect.sendRestRequest(
+      `rating/products/${encodeURIComponent(params.stockId)}`,
+      { query: { customerId: params.customerId } },
+    );
   }
+
   create(data: AddRatingDTO): Promise<RatingDTO> {
-    return this.connect.sendRestRequest("ratings", { method: "POST", body: data });
+    return this.connect.sendRestRequest("rating", { method: "POST", body: data });
   }
-  delete(id: string): Promise<{ success: boolean }> {
-    return this.connect.sendRestRequest(`ratings/${encodeURIComponent(id)}`, { method: "DELETE" });
+
+  delete(id: string): Promise<{ success: boolean; id?: string }> {
+    return this.connect.sendRestRequest(`rating/${encodeURIComponent(id)}`, { method: "DELETE" });
   }
 }

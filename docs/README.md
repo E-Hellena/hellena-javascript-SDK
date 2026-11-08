@@ -9,6 +9,7 @@ Guia do SDK `@hellena-sdk/hellena`, organizado por recurso. Os exemplos de códi
 - [Encomendas e checkout](orders.md)
 - [Comentários](comments.md)
 - [Avaliações](ratings.md)
+- [Categorias](categories.md)
 - [Pagamentos](payments.md)
 - [Organização](organization.md)
 - [REST, GraphQL e erros](rest-graphql-errors.md)
@@ -21,7 +22,8 @@ Guia do SDK `@hellena-sdk/hellena`, organizado por recurso. Os exemplos de códi
 | `product` | `listProducts`, `searchProducts`, `getProductByIdOrSlug` |
 | `order` | `createOrder`, `renewOrderTransactionId`, `calculateShippingCost`, `calculateCouponDiscount` |
 | `comment` | `listProductComments`, `getCommentById`, `createComment`, `updateComment`, `deleteComment` |
-| `rating` | `getProductRatingSummary`, `getCustomerProductRating`, `createProductRating`, `deleteProductRating` |
+| `rating` | `getProductRatingSummary`, `listProductRatings`, `getCustomerProductRating`, `createProductRating`, `deleteProductRating` |
+| `category` | `listCategories`, `getCategoryByRef` |
 | `payment` | `listAvailablePaymentMethods`, `createWiPayPayment` |
 | `organization` | `getOrganizationInfo`, `getOrganizationSocialLinks` |
 | Cliente | `sendRestRequest`, `graphql` |

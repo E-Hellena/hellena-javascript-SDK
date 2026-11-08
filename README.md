@@ -197,7 +197,8 @@ Consulta [Pagamentos](docs/payments.md) para os parâmetros e o formato de respo
 | `hellena.product` | Listar, pesquisar e consultar produtos. |
 | `hellena.order` | Criar encomendas, renovar o ID de transação, calcular portes e descontos de cupões. |
 | `hellena.comment` | Consultar, criar, atualizar e eliminar comentários. |
-| `hellena.rating` | Consultar resumos e avaliações, criar ou eliminar avaliações. |
+| `hellena.rating` | Consultar resumos completos, listar, criar e eliminar avaliações. |
+| `hellena.category` | Listar categorias e consultar os produtos associados a cada categoria. |
 | `hellena.payment` | Consultar métodos de pagamento e criar pagamentos WiPay suportados. |
 | `hellena.organization` | Consultar informações da organização e links sociais. |
 | `hellena.sendRestRequest()` | Fazer pedidos REST a endpoints que ainda não têm método dedicado. |
@@ -275,7 +276,8 @@ A documentação detalhada e os exemplos por recurso estão em [`docs/README.md`
 | [Produtos](docs/products.md) | Listagem, pesquisa e detalhe |
 | [Encomendas](docs/orders.md) | Checkout, entrega, cupões e transações |
 | [Comentários](docs/comments.md) | Consulta e gestão de comentários |
-| [Avaliações](docs/ratings.md) | Resumos e gestão de avaliações |
+| [Avaliações](docs/ratings.md) | Resumos, distribuição por estrelas e gestão de avaliações |
+| [Categorias](docs/categories.md) | Listagem de categorias e produtos associados |
 | [Pagamentos](docs/payments.md) | Métodos de pagamento e WiPay |
 | [Organização](docs/organization.md) | Dados da organização e links sociais |
 | [REST, GraphQL e erros](docs/rest-graphql-errors.md) | Transporte genérico e tratamento de erros |
